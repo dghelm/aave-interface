@@ -5,6 +5,33 @@ import { ReactNode } from 'react';
 // Enable for premissioned market
 // import { PermissionView } from 'src/components/transactions/FlowCommons/PermissionView';
 
+const marketsScrollExtended = {
+  ...markets,
+  AaveV3ScrollAlpha: {
+    POOL_ADDRESSES_PROVIDER: '0xCA35Ae4cc948Dae8a1d3C77ed1C5CBC2e73b290D', // used PoolAddressesProvider-Aave
+    POOL: '0x556345b249008Bf2f52B7097ceB5bE798F32dAe9', // used Pool-Proxy-Aave here
+    POOL_CONFIGURATOR: '0x88A4811E6009ad13EA879261806E5a6071F3F788', // used PoolConfigurator-Proxy-Aave here
+    ORACLE: '0x269D5C1854fcA3bede6BFc8935118c99020b13f0',
+    AAVE_PROTOCOL_DATA_PROVIDER: '0x36002d10bB238594c58aec104620555a545D517C', // used PoolDataProvider-Aave here
+    ACL_MANAGER: '0x550CC76fD6C4E4502cB4F79f26ee15f4E4681D57',
+    ACL_ADMIN: '0x8A52430a0a83d2bA00A88758340e4b640BDfC4FC',
+    // COLLECTOR: '0x026E3e3363843e16e3D6d21e068c981A4F55e5d2',
+    // COLLECTOR_CONTROLLER: '0xD7eFB74039B8f2B4Eb08C2a6bef64B40F196395B',
+    // DEFAULT_INCENTIVES_CONTROLLER: '0x062BB55A42875366DB1B7D227B73621C33a6cB6b',
+    DEFAULT_A_TOKEN_IMPL_REV_1: '0xf7798f65d3d1A1Af1a68d8B4322638559A47bC83', //use AToken-Aave here not DelegationAwareAToken-Aave
+    DEFAULT_VARIABLE_DEBT_TOKEN_IMPL_REV_1: '0xF087700794eb98b193D8f95fFEc0E1a02e195e28',
+    DEFAULT_STABLE_DEBT_TOKEN_IMPL_REV_1: '0x2bb98A7F11a81AE07443f192Daae04f815F2c878',
+    CHAIN_ID: 534353,
+    EMISSION_MANAGER: '0x41A9A5615a912E47F99e16484880009c7c65707b',
+    WETH_GATEWAY: '0x410Fda971c841Aaf34be5F5539b40503c7F12AC2', //trying WrappedTokenGatewayV3 here
+    FAUCET: '0x55530C4E1ADFf14cB5760C6750FeBFbEB57E6753',
+    WALLET_BALANCE_PROVIDER: '0x2B45F4A959B5Fc8fc22b457424685f17eDae4592',
+    UI_POOL_DATA_PROVIDER: '0x45dFc7A61AD24918C9315733223fD1e55E9B2B59',
+    UI_INCENTIVE_DATA_PROVIDER: '0x109e475c0Bf9E525dABB65A4Aec07c1e65100a99',
+    L2_ENCODER: '0x997a8208902e1259dDf676Eb37FeD31A2f77110B',
+  },
+};
+
 export type MarketDataType = {
   v3?: boolean;
   marketTitle: string;
@@ -56,6 +83,7 @@ export enum CustomMarket {
   proto_fuji_v3 = 'proto_fuji_v3',
   proto_goerli_v3 = 'proto_goerli_v3',
   proto_optimism_goerli_v3 = 'proto_optimism_goerli_v3',
+  proto_scroll_alpha_v3 = 'proto_scroll_alpha_v3',
   proto_sepolia_v3 = 'proto_sepolia_v3',
   // v3 mainnets
   proto_mainnet_v3 = 'proto_mainnet_v3',
@@ -361,6 +389,28 @@ export const marketsData: {
       UI_POOL_DATA_PROVIDER: markets.AaveV3OptimismGoerli.UI_POOL_DATA_PROVIDER,
       UI_INCENTIVE_DATA_PROVIDER: markets.AaveV3OptimismGoerli.UI_INCENTIVE_DATA_PROVIDER,
       L2_ENCODER: markets.AaveV3OptimismGoerli.L2_ENCODER,
+    },
+  },
+
+  [CustomMarket.proto_scroll_alpha_v3]: {
+    marketTitle: 'Scroll Alpha',
+    v3: true,
+    chainId: 534353,
+    enabledFeatures: {
+      faucet: true,
+      incentives: true,
+    },
+    addresses: {
+      LENDING_POOL_ADDRESS_PROVIDER:
+        marketsScrollExtended.AaveV3ScrollAlpha.POOL_ADDRESSES_PROVIDER,
+      LENDING_POOL: marketsScrollExtended.AaveV3ScrollAlpha.POOL,
+      WETH_GATEWAY: marketsScrollExtended.AaveV3ScrollAlpha.WETH_GATEWAY,
+      FAUCET: marketsScrollExtended.AaveV3ScrollAlpha.FAUCET,
+      WALLET_BALANCE_PROVIDER: marketsScrollExtended.AaveV3ScrollAlpha.WALLET_BALANCE_PROVIDER,
+      UI_POOL_DATA_PROVIDER: marketsScrollExtended.AaveV3ScrollAlpha.UI_POOL_DATA_PROVIDER,
+      UI_INCENTIVE_DATA_PROVIDER:
+        marketsScrollExtended.AaveV3ScrollAlpha.UI_INCENTIVE_DATA_PROVIDER,
+      L2_ENCODER: marketsScrollExtended.AaveV3ScrollAlpha.L2_ENCODER,
     },
   },
   [CustomMarket.proto_fantom_v3]: {
